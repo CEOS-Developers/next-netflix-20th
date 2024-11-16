@@ -9,7 +9,6 @@ import throttle from "lodash.throttle"; // throttle 사용해서 과도한 렌�
 import SearchBox from "@/components/SearchPage/SearchBox";
 import SearchResultList from "@/components/SearchPage/SearchResultList";
 import { Movie } from "@/components/MainPage/MovieCategoriesList";
-import { PageContainer } from "../main/page";
 import ClientLayout from "../clientLayout";
 
 const SearchPage: React.FC = () => {
@@ -101,6 +100,20 @@ const SearchPage: React.FC = () => {
 };
 
 export default SearchPage;
+
+const PageContainer = styled.div`
+  width: 375px;
+  height: 100vh;
+  margin: 0 auto;
+  overflow-y: auto; /* 전체 화면이 아닌 부모 요소 내에서 스크롤 가능하게 설정 */
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 
 const NoResult = styled.p`
   display: flex;
