@@ -93,7 +93,7 @@ export const useFetchSearchedMovies = (query: string) => {
     return useQuery({
       queryKey: ['searchMovies', query],
       queryFn: () => fetchSearchedMovies(query),
-      enabled: query.length > 0, // 쿼리가 있을 때만 요청 보내기
+      // enabled: query.length > 0, // 쿼리가 있을 때만 요청 보내기
       staleTime: 1000 * 60 * 60,
     });
 };

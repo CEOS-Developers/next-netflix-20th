@@ -15,8 +15,7 @@ const instance = axios.create({
 
 // 영화 검색 GET 요청 처리
 export async function GET(req: NextRequest) {
-  const url = req.nextUrl;
-  const query = url.searchParams.get('query');
+  const query = req.nextUrl.searchParams.get('query');
   
   if (!query) {
     return NextResponse.json({ error: '검색어가 필요합니다.' }, { status: 400 });

@@ -10,7 +10,7 @@ export default function Search() {
   return (
     <div className=''>
       <SearchBar onSearch={setQuery} />
-      <SearchedMovie />
+      <SearchedMovie query={query} />
     </div>
   );
 }
