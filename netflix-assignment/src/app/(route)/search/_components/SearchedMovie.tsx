@@ -1,4 +1,8 @@
+"use client"
+
 import Play from '../../../../public/svg/Play.svg'
+import { Movie } from '@/types/movie';
+import { TvShow } from '@/types/tvshows';
 
 export default function SearhedMovie() {
   return (
