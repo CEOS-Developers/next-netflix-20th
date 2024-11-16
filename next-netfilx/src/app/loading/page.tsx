@@ -1,6 +1,5 @@
 "use client"
 import ClientLayout from "../clientLayout";
-import { PageContainer } from "../main/page";
 import styled, { keyframes } from "styled-components";
 
 const LoadingPage = () => {
@@ -40,4 +39,18 @@ const Spinner = styled.div`
   border-radius: 50%;
   animation: ${spin} 1s linear infinite;
   margin: 30px auto; /* 스피너를 가운데 정렬 */
+`;
+
+const PageContainer = styled.div`
+  width: 375px;
+  height: 100vh;
+  margin: 0 auto;
+  overflow-y: auto; /* 전체 화면이 아닌 부모 요소 내에서 스크롤 가능하게 설정 */
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
