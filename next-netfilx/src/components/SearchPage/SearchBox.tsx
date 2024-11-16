@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import React, { useState } from 'react';
+
 import search from '../../../public/SearchPage/search.svg';
 import Xbuttom from '../../../public/SearchPage/X.svg';
 
@@ -10,7 +11,7 @@ const SearchBox: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInput(value);
-    onSearch(value); // SearchPage로 검색어 전달
+    onSearch(value); // 부모 요소인 SearchPage로 검색어 전달
   };
 
   return (
@@ -39,7 +40,7 @@ const SearchWrapper = styled.div`
   margin-top: 44px;
   position: relative;
   width: 375px;
-  min-height: 52px;
+  min-height: 52px; /*아래의 영화 요소가 나타나도 밀려나지 않도록 최소 높이 지정*/
 `;
 
 const InputWrapper = styled.div`
