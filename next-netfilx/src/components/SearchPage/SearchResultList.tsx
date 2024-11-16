@@ -1,14 +1,15 @@
-import Image from "next/image";
-import styled from "styled-components";
-import play_circle from "../../../public/SearchPage/play-circle.svg";
-import default_poster from "../../../public/SearchPage/default-poster.svg"; // 기본 이미지 경로
-import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRef } from "react";
+
+import Image from "next/image";
+import styled, {keyframes} from "styled-components";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+
+import play_circle from "../../../public/SearchPage/play-circle.svg";
 
 export interface Movie {
   id: number;
   title: string;
-  poster_path: string | null; // `poster_path`가 null일 수 있음
+  poster_path: string | null; // poster_path가 null일 수 있음
 }
 // 개별 아이템을 위한 컴포넌트
 const AnimatedListItem = ({ movie }: { movie: Movie }) => {
@@ -44,33 +45,31 @@ const AnimatedListItem = ({ movie }: { movie: Movie }) => {
 
   return (
     <AnimatePresence>
-      <ListItem
-        ref={itemRef}
-        layoutId={`${movie.id}`}
-        variants={variants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        exit="exit"
-      >
-        <StyledLink href={`/main/detail/${movie.id}`}>
-          <Poster
-            src={
-              movie.poster_path
-                ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-                : default_poster.src
-            }
-            alt={movie.title}
-          />
-          <Title>{movie.title}</Title>
-          <ImageWrapper>
-            <Image src={play_circle} alt="play button" />
-          </ImageWrapper>
-        </StyledLink>
-      </ListItem>
+      {/*포스터가 있을 때만 렌더링... 없으면 보기 안 좋아서 삭제*/}
+       {movie.poster_path && (
+        <ListItem
+          ref={itemRef}
+          layoutId={`${movie.id}`}
+          variants={variants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          exit="exit"
+        >
+          <StyledLink href={`/main/detail/${movie.id}`}>
+              <Poster
+                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                alt={movie.title}
+              />
+            <Title>{movie.title}</Title>
+            <ImageWrapper>
+              <Image src={play_circle} alt="play button" />
+            </ImageWrapper>
+          </StyledLink>
+        </ListItem>
+      )}
     </AnimatePresence>
   );
 };
-
 const SearchResultList: React.FC<{ results: Movie[]; isLoading: boolean }> = ({
   results,
   isLoading,
@@ -87,7 +86,7 @@ const SearchResultList: React.FC<{ results: Movie[]; isLoading: boolean }> = ({
         ))}
       </ListContainer>
     );
-  } // 검색 페이지 들어가면 9개의 영화 요소가 보이기에 9개로 설정
+  }
 
   return (
     <ListContainer>
@@ -153,7 +152,16 @@ const ImageWrapper = styled.div`
   margin-right: 10px;
 `;
 
-/* 스켈레톤 스타일 */
+const wave = keyframes`
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+`;
+
+// 웨이브 애니메이션 스타일
 const SkeletonItem = styled.li`
   display: flex;
   align-items: center;
@@ -161,6 +169,11 @@ const SkeletonItem = styled.li`
   padding: 10px;
   background-color: #424242;
   border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  animation: ${wave} 1.5s infinite linear; /* 애니메이션을 keyframes로 설정 */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
+  background-size: 200% 100%;
 `;
 
 const SkeletonPoster = styled.div`
