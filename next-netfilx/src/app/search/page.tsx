@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import { getSearchMovies, getRandomMovies } from "../lib/movieApi";
 import styled from "styled-components";
@@ -77,18 +77,16 @@ const SearchPage: React.FC = () => {
         }
       }
     }, 300),
-    [isLoading] // 이 값들이 변경될 때만 throttle된 함수가 실행됨
+    [isLoading] // 의존성 배열에 isLoading을 추가하여 해당 값이 변경될 때만 함수 실행
   );
-
-  const throttledHandleScroll = useRef(throttle(handleScroll, 300)).current;
 
   useEffect(() => {
     const container = document.querySelector("#PageContainer");
-    container?.addEventListener("scroll", throttledHandleScroll);
+    container?.addEventListener("scroll", handleScroll);
     return () => {
-      container?.removeEventListener("scroll", throttledHandleScroll);
+      container?.removeEventListener("scroll", handleScroll);
     };
-  }, [throttledHandleScroll]);
+  }, [handleScroll]); // handleScroll이 변경될 때마다 useEffect가 실행되도록 의존성 배열에 추가
 
   return (
     <PageContainer id="PageContainer">
@@ -102,6 +100,6 @@ const SearchPage: React.FC = () => {
 export default SearchPage;
 
 const NoResult = styled.p`
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 `;
