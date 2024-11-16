@@ -9,6 +9,7 @@ import throttle from "lodash.throttle"; // throttle 사용해서 과도한 렌�
 import SearchBox from "@/components/SearchPage/SearchBox";
 import SearchResultList from "@/components/SearchPage/SearchResultList";
 import { Movie } from "@/components/MainPage/MovieCategoriesList";
+import { PageContainer } from "../main/page";
 
 const SearchPage: React.FC = () => {
   const [query, setQuery] = useState(""); // 검색어 상태
@@ -99,20 +100,6 @@ const SearchPage: React.FC = () => {
 };
 
 export default SearchPage;
-
-const PageContainer = styled.div`
-  width: 375px;
-  height: 100vh;
-  margin: 0 auto;
-  overflow-y: auto;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
 
 const NoResult = styled.p`
 display: flex;

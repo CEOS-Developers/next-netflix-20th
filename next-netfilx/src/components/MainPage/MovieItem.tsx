@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
+import { Movie } from "./MovieCategoriesList";
 
 interface MovieItemProps {
-  movie: {
-    title: string;
-    poster_path: string;
-  };
+  movie: Movie
   preview: boolean;
   id: number;
 }
