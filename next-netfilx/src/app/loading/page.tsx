@@ -1,15 +1,18 @@
 "use client"
+import ClientLayout from "../clientLayout";
 import { PageContainer } from "../main/page";
 import styled, { keyframes } from "styled-components";
 
 const LoadingPage = () => {
   return (
-    <PageContainer>
-        <LoadingPageLayout>
-        This page is under preparation. 😭
-        <Spinner/>
-      </LoadingPageLayout>
-    </PageContainer>
+    <ClientLayout>
+        <PageContainer>
+            <LoadingPageLayout>
+            This page is under preparation. 😭
+            <Spinner/>
+        </LoadingPageLayout>
+        </PageContainer>
+    </ClientLayout>
   );
 };
 

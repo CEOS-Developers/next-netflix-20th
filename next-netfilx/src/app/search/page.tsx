@@ -10,6 +10,7 @@ import SearchBox from "@/components/SearchPage/SearchBox";
 import SearchResultList from "@/components/SearchPage/SearchResultList";
 import { Movie } from "@/components/MainPage/MovieCategoriesList";
 import { PageContainer } from "../main/page";
+import ClientLayout from "../clientLayout";
 
 const SearchPage: React.FC = () => {
   const [query, setQuery] = useState(""); // 검색어 상태
@@ -89,11 +90,13 @@ const SearchPage: React.FC = () => {
   }, [handleScroll]); // handleScroll이 변경될 때마다 useEffect가 실행되도록 의존성 배열에 추가
 
   return (
-    <PageContainer id="PageContainer">
-      <SearchBox onSearch={handleSearch} />
-      <SearchResultList results={results} isLoading={isLoading} />
-      {results.length === 0 && <NoResult>No results 😭</NoResult>}
-    </PageContainer>
+    <ClientLayout>
+      <PageContainer id="PageContainer">
+        <SearchBox onSearch={handleSearch} />
+        <SearchResultList results={results} isLoading={isLoading} />
+        {results.length === 0 && <NoResult>No results 😭</NoResult>}
+      </PageContainer>
+    </ClientLayout>
   );
 };
 
