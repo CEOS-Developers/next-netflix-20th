@@ -1,3 +1,4 @@
+import { getMovieInfoByMovieId } from "@/app/lib/movieApi";
 import { MovieDetailClient } from "@/components/DetailPage/MovieDetailClient";
 
 type PageProps = {
@@ -7,10 +8,8 @@ type PageProps = {
 export default async function MovieDetail(props: PageProps) {
   const { movieId } = await props.params;
 
-  const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.NETFLIX_API_KEY}`
-  );
-  const data = await response.json();
+  const movie = await getMovieInfoByMovieId(movieId);
+  console.log(movie);
 
-  return <MovieDetailClient data={data} />;
+  return <MovieDetailClient data={movie} />;
 }

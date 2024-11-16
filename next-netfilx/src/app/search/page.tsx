@@ -45,7 +45,8 @@ const SearchPage: React.FC = () => {
           setResults((prev) => {
             const combined = [...prev, ...data];
             return combined.filter(
-              (movie, index, self) => self.findIndex((m) => m.id === movie.id) === index
+              (movie, index, self) =>
+                self.findIndex((m) => m.id === movie.id) === index
             );
           });
         } catch (error) {
@@ -70,7 +71,8 @@ const SearchPage: React.FC = () => {
       const container = document.querySelector("#PageContainer");
       if (container) {
         const isBottom =
-          container.scrollHeight - container.scrollTop <= container.clientHeight + 100;
+          container.scrollHeight - container.scrollTop <=
+          container.clientHeight + 100;
         if (isBottom && !isLoading) {
           setPage((prev) => prev + 1); // 페이지 증가
         }
@@ -115,6 +117,6 @@ const PageContainer = styled.div`
 `;
 
 const NoResult = styled.p`
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 `;

@@ -15,14 +15,14 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: "/api/movies/:id", // 내부 경로
-  //       destination: `https://api.themoviedb.org/3/movie/:id?api_key=${process.env.NETFLIX_API_KEY}`, // 외부 API 경로
-  //     },
-  //   ];
-  // },
+  async rewrites() {
+    return [
+      {
+        source: "/api/movieInfo/:movieId",
+        destination: `https://api.themoviedb.org/3/movie/:movieId?api_key=${process.env.NETFLIX_API_KEY}`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
