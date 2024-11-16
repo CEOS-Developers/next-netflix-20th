@@ -5,24 +5,27 @@ import styled from "styled-components";
 import MainTopView from "@/components/MainPage/MainTopView";
 import Header from "@/components/MainPage/Header";
 import { Suspense } from "react";
+import ClientLayout from "../clientLayout";
 
 const MainPage = () => {
   return (
-    <PageContainer>
-      <Header />
-      <Suspense fallback={<h1>loading main view</h1>}>
-        <MainTopView />
-      </Suspense>
-      <Suspense fallback={<h1>loading movie categories list</h1>}>
-        <MovieCategoriesList />
-      </Suspense>
-    </PageContainer>
+    <ClientLayout>
+      <PageContainer>
+        <Header />
+        <Suspense fallback={<h1>loading main view</h1>}>
+          <MainTopView />
+        </Suspense>
+        <Suspense fallback={<h1>loading movie categories list</h1>}>
+          <MovieCategoriesList />
+        </Suspense>
+      </PageContainer>
+    </ClientLayout>
   );
 };
 
 export default MainPage;
 
-const PageContainer = styled.div`
+export const PageContainer = styled.div`
   width: 375px;
   height: 100vh;
   margin: 0 auto;
