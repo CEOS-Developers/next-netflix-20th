@@ -24,6 +24,11 @@ const nextConfig = {
         source: '/details/:type/:id',
         destination: '/api/details/:type/:id', // 수정된 부분
       },
+      // 영화 검색 rewrite
+      {
+        source: '/search/movie',
+        destination: '/api/search/movie', // 수정된 부분
+      },
     ];
   },
 };
