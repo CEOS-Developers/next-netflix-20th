@@ -1,6 +1,6 @@
 "use client"
 
-import { tvCategories } from '../../../../data/categories';
+import { tvCategories } from '@/data/categories';
 import ContentRow from './ContentRow';
 import { useFetchAllTvShows } from '@/hooks/useFetchContents';
 

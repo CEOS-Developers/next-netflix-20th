@@ -1,6 +1,6 @@
-import Plus from '../../../../assets/svg/Plus.svg';
-import Info from '../../../../assets/svg/Info.svg';
-import RightArrow from '../../../../assets/svg/RightArrow.svg';
+import Plus from '@/public/svg/Plus.svg';
+import Info from '@/public//svg/Info.svg';
+import RightArrow from '@/public//svg/RightArrow.svg';
 
 export default function Span() {
     return (

@@ -1,6 +1,6 @@
 "use client"
 
-import { Movie } from '../../../../types/movie';
+import { Movie } from '@/types/movie';
 import { TvShow } from '@/types/tvshows';
 import { useFetchAllMovies, useFetchAllTvShows } from '@/hooks/useFetchContents';
 import Link from 'next/link';

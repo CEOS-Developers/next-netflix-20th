@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { Movie } from "@/types/movie";
-import Top10 from "../../../../assets/svg/Top10.svg";
 import { useFetchAllMovies } from "@/hooks/useFetchContents";
+import { Movie } from "@/types/movie";
+import Top10 from "@/public/svg/Top10.svg";
 import Link from "next/link";
 
 export default function Header() {
