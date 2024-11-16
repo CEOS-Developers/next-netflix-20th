@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import { useFetchSearchedMovies } from '@/hooks/useFetchContents';
+import { useFetchSearchedMovies, useFetchMovies  } from '@/hooks/useFetchContents';
 import Play from '../../../../public/svg/Play.svg'
 import { Movie } from '@/types/movie';
 import { TvShow } from '@/types/tvshows';
@@ -18,19 +18,31 @@ const MovieCard = ({ movie }: { movie: Movie }) => (
       className="w-[146px] h-[76px] object-cover"
     />
     <p className="w-40 text-[14.72px] overflow-hidden whitespace-break-spaces text-left">{movie.title}</p>
-    <Play />
+    <button>
+      <Play />
+    </button>
   </div>
 );
 
 export default function SearchedMovie({ query }: SearchedProps) {
-  const { data } = useFetchSearchedMovies(query);
+  const { data: searchedData } = useFetchSearchedMovies(query);
+  const { data: topRatedMovies } = useFetchMovies('top_rated');
 
-  if (!data) return
+  if (!searchedData) {
+    return (
+      <section className="w-full mt-4">
+        <h2 className="text-[26.75px] font-bold mb-[21px] ml-[10px]">Top Searches</h2>
+        {topRatedMovies?.map((movie: Movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </section>
+    )
+  }
 
   return (
     <section className="w-full mt-4">
       <h2 className="text-[26.75px] font-bold mb-[21px] ml-[10px]">Top Searches</h2>
-      {data.map((movie: Movie) => (
+      {searchedData.map((movie: Movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
     </section>
