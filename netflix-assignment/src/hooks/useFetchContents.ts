@@ -77,3 +77,23 @@ export const useFetchAllTvShows = () => {
         staleTime: 1000 * 60 * 60,
     });
 };
+
+// 검색된 영화를 가져오는 함수
+const fetchSearchedMovies = async (query: string): Promise<Movie[]> => {
+  const response = await axios.get(`/search/movie`, {
+    params: {
+      query,
+    },
+  });
+  return response.data.results;
+};
+
+// 검색된 영화를 가져오는 훅
+export const useFetchSearchedMovies = (query: string) => {
+    return useQuery({
+      queryKey: ['searchMovies', query],
+      queryFn: () => fetchSearchedMovies(query),
+      enabled: query.length > 0, // 쿼리가 있을 때만 요청 보내기
+      staleTime: 1000 * 60 * 60,
+    });
+};
