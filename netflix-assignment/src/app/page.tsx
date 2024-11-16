@@ -1,7 +1,7 @@
 "use client"
 
 import "./style.css";
-import LogoSVG from '../assets/svg/logos_netflix.svg';
+import LogoSVG from '@/public/svg/logos_netflix.svg';
 import { useRouter } from 'next/navigation';
 import { useEffect } from "react";
 

@@ -1,6 +1,6 @@
 "use client"
 
-import {  movieCategories } from '../../../../data/categories';
+import {  movieCategories } from '@/data/categories';
 import ContentRow from './ContentRow';
 import { useFetchAllMovies } from '@/hooks/useFetchContents';
 

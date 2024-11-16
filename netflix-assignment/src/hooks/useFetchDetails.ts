@@ -11,5 +11,6 @@ export const useFetchDetails = (type: 'movie' | 'tv' | null, id: string | null) 
         queryKey: ['details', type, id],
         queryFn: () => fetchDetails(type, id),
         staleTime: 1000 * 60 * 60,
+        enabled: !!type && !!id, // type과 id가 존재할 때만 실행
     });
 };

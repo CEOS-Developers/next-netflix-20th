@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import Home from '../assets/svg/Home.svg';
-import Search from '../assets/svg/Search.svg';
-import ComingSoon from '../assets/svg/ComingSoon.svg';
-import Downloads from '../assets/svg/Downloads.svg';
-import More from '../assets/svg/More.svg';
+import Home from '@/public/svg/Home.svg';
+import Search from '@/public/svg/Search.svg';
+import ComingSoon from '@/public/svg/ComingSoon.svg';
+import Downloads from '@/public/svg/Downloads.svg';
+import More from '@/public/svg/More.svg';
 
 type NavItem = {
     id: number;

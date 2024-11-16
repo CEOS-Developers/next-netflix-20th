@@ -3,7 +3,7 @@
 import { useFetchDetails } from "@/hooks/useFetchDetails";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import RightArrow from '@/assets/svg/RightArrow.svg';
+import RightArrow from '@/public/svg/RightArrow.svg';
 
 
 export default function DetailPage() {
