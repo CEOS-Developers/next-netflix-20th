@@ -1,3 +1,4 @@
+import ClientLayout from "@/app/clientLayout";
 import { MovieDetailClient } from "@/components/DetailPage/MovieDetailClient";
 
 type PageProps = {
@@ -12,5 +13,7 @@ export default async function MovieDetail(props: PageProps) {
   );
   const data = await response.json();
 
-  return <MovieDetailClient data={data} />;
+  return <ClientLayout>
+    <MovieDetailClient data={data} />
+    </ClientLayout>;
 }

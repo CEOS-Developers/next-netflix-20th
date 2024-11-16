@@ -3,16 +3,11 @@ import { Suspense } from "react";
 import styled from "styled-components";
 import PlayIcon from "../../../public/PlayIcon";
 import { motion } from "framer-motion";
+import { Movie } from "../MainPage/MovieCategoriesList";
 
-interface MovieDetail {
-  poster_path: string;
+interface MovieDetail extends Movie {
   backdrop_path: string;
-  title: string;
-  overview: string;
-  release_date: string;
   vote_average: number;
-  id: number;
-  // 필요한 다른 속성들 추가
 }
 
 const containerVariants = {

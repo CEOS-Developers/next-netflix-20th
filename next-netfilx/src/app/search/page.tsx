@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import { getSearchMovies, getRandomMovies } from "../lib/movieApi";
 import styled from "styled-components";
@@ -9,6 +9,8 @@ import throttle from "lodash.throttle"; // throttle 사용해서 과도한 렌�
 import SearchBox from "@/components/SearchPage/SearchBox";
 import SearchResultList from "@/components/SearchPage/SearchResultList";
 import { Movie } from "@/components/MainPage/MovieCategoriesList";
+import { PageContainer } from "../main/page";
+import ClientLayout from "../clientLayout";
 
 const SearchPage: React.FC = () => {
   const [query, setQuery] = useState(""); // 검색어 상태
@@ -76,45 +78,31 @@ const SearchPage: React.FC = () => {
         }
       }
     }, 300),
-    [isLoading] // 이 값들이 변경될 때만 throttle된 함수가 실행됨
+    [isLoading] // 의존성 배열에 isLoading을 추가하여 해당 값이 변경될 때만 함수 실행
   );
-
-  const throttledHandleScroll = useRef(throttle(handleScroll, 300)).current;
 
   useEffect(() => {
     const container = document.querySelector("#PageContainer");
-    container?.addEventListener("scroll", throttledHandleScroll);
+    container?.addEventListener("scroll", handleScroll);
     return () => {
-      container?.removeEventListener("scroll", throttledHandleScroll);
+      container?.removeEventListener("scroll", handleScroll);
     };
-  }, [throttledHandleScroll]);
+  }, [handleScroll]); // handleScroll이 변경될 때마다 useEffect가 실행되도록 의존성 배열에 추가
 
   return (
-    <PageContainer id="PageContainer">
-      <SearchBox onSearch={handleSearch} />
-      <SearchResultList results={results} isLoading={isLoading} />
-      {results.length === 0 && <NoResult>No results 😭</NoResult>}
-    </PageContainer>
+    <ClientLayout>
+      <PageContainer id="PageContainer">
+        <SearchBox onSearch={handleSearch} />
+        <SearchResultList results={results} isLoading={isLoading} />
+        {results.length === 0 && <NoResult>No results 😭</NoResult>}
+      </PageContainer>
+    </ClientLayout>
   );
 };
 
 export default SearchPage;
 
-const PageContainer = styled.div`
-  width: 375px;
-  height: 100vh;
-  margin: 0 auto;
-  overflow-y: auto;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
 const NoResult = styled.p`
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 `;
