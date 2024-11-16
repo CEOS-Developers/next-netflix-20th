@@ -1,0 +1,165 @@
+html, body {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.netflix {
+    position: relative;
+    width: 181.5px;
+    height: 300px;
+    overflow: hidden;
+    /* 첫 번째 애니메이션 */
+  animation: anim-netflix 0.5s linear forwards;
+  animation-delay: 1.4s;
+  
+  /* 두 번째 애니메이션 */
+  animation: anim-netflix, anim-netflix-opacity;
+  animation-duration: 0.5s, 0.5s;
+  animation-timing-function: linear, linear;
+  animation-fill-mode: forwards;
+  animation-delay: 1.4s, 1.9s;
+}
+
+.n-1 {
+    background-color: #B10510;
+    height: 300px;
+    width: 60px;
+    position: absolute;
+    top: 300px;
+    animation: anim-top 0.6s linear forwards;
+    animation-delay: 0.2s; /* 딜레이 조정 */
+}
+
+.n-1::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    background-color: black;
+    bottom: -2px;
+    transform: rotateZ(-3deg);
+    z-index: 99;
+}
+.n-3 {
+    background-color: #B10510;
+    height: 300px;
+    width: 60px;
+    position: absolute;
+    top: 300px;
+    right: 0;
+    animation: anim-top 0.4s linear forwards;
+    animation-delay: 1.2s;
+
+}
+.n-3::after {
+    content: '';
+    position: absolute;
+    width: 130px;
+    height: 10px;
+    background-color: black;
+    bottom: -5px;
+    left: -25px;
+    transform: rotateZ(5deg);
+    z-index: 99;
+}
+
+.n-2 {
+    background-color: transparent;
+    height: 375px;
+    width: 60px;
+    position: absolute;
+    transform: rotateZ(-21deg);
+    top: -51px;
+    left: 56.25px;
+    box-shadow: 4px 4px 15px #00000085;
+}
+.filler {
+    background-color: #e50815;
+    height: 0;
+    animation: anim-filler 0.4s linear forwards;
+    animation-delay: 0.8s;
+}
+.etflix {
+    position: absolute;
+    left: 70px; /* 시작 위치 */
+    top: 0;
+    color: #e50815;
+    font-size: 4rem;
+    opacity: 0;
+    animation: anim-etflix 0.5s ease forwards;
+    animation-delay: 1.6s; /* `N` 애니메이션 후 나타남 */
+}
+.netflix-logo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeInLeftToRight 1s ease forwards;
+    animation-delay: 2.4s;
+
+    animation: fadeInLeftToRight, fadeOut;
+    animation-duration: 1s, 1s;
+    animation-timing-function: linear, linear;
+    animation-fill-mode: forwards;
+    animation-delay: 2.4s, 4.0s;
+}
+@keyframes anim-top {
+    0% {
+        top: 300px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+@keyframes anim-filler {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 375px;
+    }
+}
+@keyframes anim-netflix {
+    0% {
+        transform: scale(1) translateX(0);
+    }
+    100% {
+        transform: scale(0.2) translateX(-450px);
+    }
+}
+@keyframes anim-netflix-opacity {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes fadeInLeftToRight {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px); /* 왼쪽에서 시작 */
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0); /* 원래 위치로 이동 */
+    }
+}
+@keyframes fadeOut {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+  }
