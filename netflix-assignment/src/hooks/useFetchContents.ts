@@ -85,7 +85,10 @@ const fetchSearchedMovies = async (query: string): Promise<Movie[]> => {
       query,
     },
   });
-  return response.data.results;
+  return response.data.map((movie: Movie) => ({
+    ...movie,
+    media_type: 'movie', // 수동으로 media_type 추가
+  }));
 };
 
 // 검색된 영화를 가져오는 훅
